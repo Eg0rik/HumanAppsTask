@@ -6,8 +6,15 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		8C078B75C1691A2574B759F8 /* Pods_HumanAppsTask.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92868C639F2C600AD8187494 /* Pods_HumanAppsTask.framework */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		04D0E9812CE5A88C00715F40 /* HumanAppsTask.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HumanAppsTask.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		82B655E6A2999297CA9AC17C /* Pods-HumanAppsTask.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HumanAppsTask.release.xcconfig"; path = "Target Support Files/Pods-HumanAppsTask/Pods-HumanAppsTask.release.xcconfig"; sourceTree = "<group>"; };
+		92868C639F2C600AD8187494 /* Pods_HumanAppsTask.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HumanAppsTask.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		ACB9149BD210E07955186351 /* Pods-HumanAppsTask.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HumanAppsTask.debug.xcconfig"; path = "Target Support Files/Pods-HumanAppsTask/Pods-HumanAppsTask.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -36,6 +43,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8C078B75C1691A2574B759F8 /* Pods_HumanAppsTask.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -47,6 +55,8 @@
 			children = (
 				04D0E9832CE5A88C00715F40 /* HumanAppsTask */,
 				04D0E9822CE5A88C00715F40 /* Products */,
+				BCC66D984A78A62740FCCB4A /* Pods */,
+				4A208E8C16F096D2D02BE1FE /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -58,6 +68,23 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		4A208E8C16F096D2D02BE1FE /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				92868C639F2C600AD8187494 /* Pods_HumanAppsTask.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		BCC66D984A78A62740FCCB4A /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				ACB9149BD210E07955186351 /* Pods-HumanAppsTask.debug.xcconfig */,
+				82B655E6A2999297CA9AC17C /* Pods-HumanAppsTask.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -65,9 +92,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 04D0E9942CE5A89000715F40 /* Build configuration list for PBXNativeTarget "HumanAppsTask" */;
 			buildPhases = (
+				0D94CB473EEE5DBC1FEA9392 /* [CP] Check Pods Manifest.lock */,
 				04D0E97D2CE5A88C00715F40 /* Sources */,
 				04D0E97E2CE5A88C00715F40 /* Frameworks */,
 				04D0E97F2CE5A88C00715F40 /* Resources */,
+				419E978FE4511B2D2D26315D /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -77,8 +106,6 @@
 				04D0E9832CE5A88C00715F40 /* HumanAppsTask */,
 			);
 			name = HumanAppsTask;
-			packageProductDependencies = (
-			);
 			productName = HumanAppsTask;
 			productReference = 04D0E9812CE5A88C00715F40 /* HumanAppsTask.app */;
 			productType = "com.apple.product-type.application";
@@ -127,6 +154,48 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		0D94CB473EEE5DBC1FEA9392 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-HumanAppsTask-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		419E978FE4511B2D2D26315D /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-HumanAppsTask/Pods-HumanAppsTask-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-HumanAppsTask/Pods-HumanAppsTask-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-HumanAppsTask/Pods-HumanAppsTask-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		04D0E97D2CE5A88C00715F40 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -140,6 +209,7 @@
 /* Begin XCBuildConfiguration section */
 		04D0E9952CE5A89000715F40 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = ACB9149BD210E07955186351 /* Pods-HumanAppsTask.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -166,6 +236,7 @@
 		};
 		04D0E9962CE5A89000715F40 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 82B655E6A2999297CA9AC17C /* Pods-HumanAppsTask.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -227,7 +298,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -290,7 +361,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
