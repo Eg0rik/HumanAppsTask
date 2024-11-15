@@ -1,5 +1,5 @@
 //
-//  EditedView.swift
+//  MovableView.swift
 //  HumanAppsTask
 //
 //  Created by MAC on 11/14/24.
