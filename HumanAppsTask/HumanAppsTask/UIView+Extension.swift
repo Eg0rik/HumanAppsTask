@@ -8,7 +8,7 @@
 import UIKit
 
 extension UIView {
-    ///Adds subviews and sets the views property `translatesAutoresizingMaskIntoConstraints` to `false`.
+    /// Adds subviews and sets the views property `translatesAutoresizingMaskIntoConstraints` to `false`.
     func addSubviews(_ views: UIView...) {
         for i in views {
             self.addSubview(i)
@@ -26,5 +26,13 @@ extension UIView {
     func moveToCenterInSuperview() {
         guard let superview else { return }
         center = CGPoint(x: superview.bounds.midX, y: superview.bounds.midY)
+    }
+    
+    /// Render a UIView to a UIImage
+    func captureView() -> UIImage? {
+        let renderer = UIGraphicsImageRenderer(size: bounds.size)
+        return renderer.image { _ in
+            drawHierarchy(in: bounds, afterScreenUpdates: true)
+        }
     }
 }
