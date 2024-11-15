@@ -257,5 +257,5 @@ private extension HomeViewController {
 }
 
 #Preview {
-    makeController()
+    makeControllerForPreview()
 }

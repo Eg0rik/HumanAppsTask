@@ -63,5 +63,5 @@ private extension EditedImageView {
 }
 
 #Preview {
-    makeController()
+    makeControllerForPreview()
 }
