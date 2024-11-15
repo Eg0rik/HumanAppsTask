@@ -33,17 +33,17 @@ class HomeViewController: UIViewController {
         return view
     }()
     
-    private lazy var segmentedControlImageMode: UISegmentedControl = {
+    private lazy var segmentedControlImageFilter: UISegmentedControl = {
         
-        let control = UISegmentedControl(items: [
-            UIAction(title: "original") { _ in
-                
-            },
-            
-            UIAction(title: "Monochrome") { _ in
-                
-            }
-        ])
+        var actions = [UIAction]()
+        
+        for filter in FilterType.allCases {
+            actions.append(UIAction(title: filter.name) { [weak self] _ in
+                self?.editedView.setFilter(filter)
+            })
+        }
+        
+        let control = UISegmentedControl(items: actions)
         control.selectedSegmentIndex = 0
         control.isEnabled = false
         return control
@@ -94,7 +94,7 @@ class HomeViewController: UIViewController {
 //MARK: - Private methods
 private extension HomeViewController {
     func setupView() {
-        view.addSubviews(editedView, topBackgroundView, segmentedControlImageMode, borderWidthSlider)
+        view.addSubviews(editedView, topBackgroundView, segmentedControlImageFilter, borderWidthSlider)
         
         photoPicker.delegate = self
     }
@@ -120,13 +120,13 @@ private extension HomeViewController {
     }
     
     func activateEditPanel() {
-        segmentedControlImageMode.isEnabled = true
+        segmentedControlImageFilter.isEnabled = true
         borderWidthSlider.isEnabled = true
         setBarButtonWithEditingMenu()
     }
     
     func deactivateEditPanel() {
-        segmentedControlImageMode.isEnabled = false
+        segmentedControlImageFilter.isEnabled = false
         borderWidthSlider.isEnabled = false
         setPlussBarButton()
     }
@@ -137,7 +137,7 @@ private extension HomeViewController {
                 guard let self else { return }
                 
                 self.editedView.moveToCenterInSuperview()
-                self.editedView.transform = .identity
+                self.editedView.setDefaultTransform()
             },
             
             UIAction(title: "Choose new frame color",image: UIImage(systemName: "pencil.tip")) { [weak self] action in
@@ -186,7 +186,7 @@ private extension HomeViewController {
             $0.bottom.equalTo(borderWidthSlider.snp.bottom).offset(10)
         }
         
-        segmentedControlImageMode.snp.makeConstraints {
+        segmentedControlImageFilter.snp.makeConstraints {
             $0.top.equalTo(view.safeAreaLayoutGuide.snp.top)
             $0.leading.trailing.equalToSuperview().inset(15)
             $0.height.equalTo(40)
@@ -194,7 +194,7 @@ private extension HomeViewController {
         
         borderWidthSlider.snp.makeConstraints {
             $0.leading.trailing.equalToSuperview().inset(15)
-            $0.top.equalTo(segmentedControlImageMode.snp.bottom).offset(20)
+            $0.top.equalTo(segmentedControlImageFilter.snp.bottom).offset(20)
         }
     }
     
