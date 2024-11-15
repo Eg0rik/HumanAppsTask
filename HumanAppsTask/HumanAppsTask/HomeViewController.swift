@@ -121,11 +121,13 @@ private extension HomeViewController {
     
     func activateEditPanel() {
         segmentedControlImageMode.isEnabled = true
+        borderWidthSlider.isEnabled = true
         setBarButtonWithEditingMenu()
     }
     
     func deactivateEditPanel() {
         segmentedControlImageMode.isEnabled = false
+        borderWidthSlider.isEnabled = false
         setPlussBarButton()
     }
     
@@ -245,7 +247,7 @@ extension HomeViewController: UIColorPickerViewControllerDelegate {
         editedView.layer.borderColor = didSelect.cgColor
         
         borderWidthSlider.thumbTintColor = didSelect
-        borderWidthSlider.minimumTrackTintColor = editedViewDefaultBorderColor
+        borderWidthSlider.minimumTrackTintColor = didSelect
     }
 }
 
