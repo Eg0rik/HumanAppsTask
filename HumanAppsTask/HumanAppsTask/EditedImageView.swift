@@ -37,6 +37,14 @@ class EditedImageView: MovableView {
     func setImage(_ image: UIImage?) {
         imageView.image = image
     }
+    
+    func getImage() -> UIImage? {
+        captureView()
+    }
+    
+    func delteImage() {
+        imageView.image = nil
+    }
 }
 
 //MARK: - Private methods
@@ -44,7 +52,6 @@ private extension EditedImageView {
     func setupView() {
         addSubview(imageView)
         
-        setupGestures()
         setupConstraints()
     }
     
