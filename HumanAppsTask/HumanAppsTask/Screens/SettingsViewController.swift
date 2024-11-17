@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SettingsViewController: UIViewController {
+class SettingsViewController: FormTableViewController {
     
     //MARK: - Public properties
     
@@ -17,7 +17,19 @@ class SettingsViewController: UIViewController {
     
     //MARK: - Life Cycle
     init() {
-        super.init(nibName: nil, bundle: nil)
+        super.init()
+        
+        form = Form(sections: [
+            StandardSection(items: [
+                SettingsRowItem(text: "Info about developer", image: UIImage(systemName: "info.bubble.fill")) { [weak self] in
+                    self?.showAlert(title: "Info", message: "Egor Eremeichik")
+                },
+                
+                SettingsRowItem(text: "Github profile", image: UIImage(systemName: "network")) { [weak self] in
+                    self?.goToGihubProfile()
+                }
+            ])
+        ])
         setupTabBarItem()
     }
     
@@ -37,7 +49,7 @@ class SettingsViewController: UIViewController {
 //MARK: - Private methods
 private extension SettingsViewController {
     func setupView() {
-        
+        tableView.backgroundColor = .lightGray
     }
     
     func setupTabBarItem() {
@@ -51,4 +63,24 @@ private extension SettingsViewController {
     func setupNavigationBar() {
         navigationItem.title = "Settings"
     }
+    
+    func showAlert(title: String, message: String) {
+        let alertVC = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        
+        alertVC.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        
+        present(alertVC, animated: true)
+    }
+    
+    func goToGihubProfile() {
+        guard let url = URL(string: "https://github.com/Eg0rik") else {
+            return
+        }
+        
+        UIApplication.shared.open(url)
+    }
+}
+
+#Preview {
+    makeControllerForPreview()
 }
