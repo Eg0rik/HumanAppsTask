@@ -124,7 +124,6 @@ class HomeViewController: UIViewController {
         setupNavigationBar()
         deactivateEditPanel()
         setupConstraints()
-        //testSetup()
     }
 }
 
@@ -256,13 +255,6 @@ extension HomeViewController: UIColorPickerViewControllerDelegate {
         
         borderWidthSlider.thumbTintColor = didSelect
         borderWidthSlider.minimumTrackTintColor = didSelect
-    }
-}
-
-//FIXME: - For tests
-private extension HomeViewController {
-    func testSetup() {
-        setEditedImage(.image1)
     }
 }
 
