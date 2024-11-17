@@ -46,10 +46,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
 
     func makeSettingsViewController() -> UIViewController {
-        return UINavigationController(rootViewController: SettingsViewController())
+        return UINavigationController(rootViewController: SettingsViewController(viewModel: .init()))
     }
 }
 
+//FIXME: delete later
 func makeControllerForPreview() -> UIViewController {
     SceneDelegate().makeUITabBarController()
 }

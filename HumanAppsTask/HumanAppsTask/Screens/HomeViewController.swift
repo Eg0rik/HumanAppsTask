@@ -10,8 +10,6 @@ import SnapKit
 
 class HomeViewController: UIViewController {
     
-    //MARK: - Public properties
-    
     //MARK: - Private properties
     private let photoPicker: PhotoPicker
     
@@ -68,6 +66,47 @@ class HomeViewController: UIViewController {
         return slider
     }()
     
+    private lazy var editingMenuBarButton: UIBarButtonItem = {
+        let menu = UIMenu(title: "Options", children: [
+            UIAction(title: "Set a default size") { [weak self] action in
+                guard let self else { return }
+                
+                self.editedView.moveToCenterInSuperview()
+                self.editedView.setDefaultTransform()
+            },
+            
+            UIAction(title: "Choose new frame color",image: UIImage(systemName: "pencil.tip")) { [weak self] action in
+                guard let self else { return }
+                
+                self.present(self.colorPicker, animated: true)
+            },
+            
+            UIAction(title: "Save the image",image: UIImage(systemName: "square.and.arrow.down.fill")) { [weak self] action in
+                self?.saveImage()
+            },
+            
+            UIAction(title: "Delete the image",image: UIImage(systemName: "trash"), attributes: .destructive) { [weak self] action in
+                self?.deleteImage()
+            }
+        ])
+        
+        return UIBarButtonItem(
+            title: nil,
+            image: UIImage(systemName: "slider.horizontal.3"),
+            target: nil,
+            action: nil,
+            menu: menu)
+    }()
+    
+    // Button to add image from photo library.
+    private lazy var addImageFromLibraryBarButton: UIBarButtonItem = {
+        UIBarButtonItem(
+            title: nil,
+            image: .add,
+            target: self,
+            action: #selector(addImage))
+    }()
+    
     //MARK: - Life Cycle
     init(photoPicker: PhotoPicker) {
         self.photoPicker = photoPicker
@@ -85,10 +124,8 @@ class HomeViewController: UIViewController {
         setupNavigationBar()
         deactivateEditPanel()
         setupConstraints()
-        testSetup()
+        //testSetup()
     }
-    
-    //MARK: - Public methods
 }
 
 //MARK: - Private methods
@@ -132,53 +169,18 @@ private extension HomeViewController {
         borderWidthSlider.isEnabled = false
         borderWidthSlider.value = Float(editedViewDefaultBorderWidth)
         borderWidthSlider.thumbTintColor = editedViewDefaultBorderColor
+        borderWidthSlider.minimumTrackTintColor = editedViewDefaultBorderColor
         
         setPlussBarButton()
     }
     
     func setBarButtonWithEditingMenu() {
-        let menu = UIMenu(title: "Options", children: [
-            UIAction(title: "Set a default size") { [weak self] action in
-                guard let self else { return }
-                
-                self.editedView.moveToCenterInSuperview()
-                self.editedView.setDefaultTransform()
-            },
-            
-            UIAction(title: "Choose new frame color",image: UIImage(systemName: "pencil.tip")) { [weak self] action in
-                guard let self else { return }
-                
-                self.present(self.colorPicker, animated: true)
-            },
-            
-            UIAction(title: "Save the image",image: UIImage(systemName: "square.and.arrow.down.fill")) { [weak self] action in
-                self?.saveImage()
-            },
-            
-            UIAction(title: "Delete the image",image: UIImage(systemName: "trash"), attributes: .destructive) { [weak self] action in
-                self?.deleteImage()
-            }
-        ])
-        
-        let rightButton = UIBarButtonItem(
-            title: nil,
-            image: UIImage(systemName: "slider.horizontal.3"),
-            target: nil,
-            action: nil,
-            menu: menu)
-        
-        navigationItem.rightBarButtonItem = rightButton
+        navigationItem.rightBarButtonItem = editingMenuBarButton
     }
     
     // Button to add image from photo library.
     func setPlussBarButton() {
-        let rightButton = UIBarButtonItem(
-            title: nil,
-            image: .add,
-            target: self,
-            action: #selector(addImage))
-        
-        navigationItem.rightBarButtonItem = rightButton
+        navigationItem.rightBarButtonItem = addImageFromLibraryBarButton
     }
     
     @objc func addImage() {
@@ -205,10 +207,11 @@ private extension HomeViewController {
     
     func setEditedImage(_ image: UIImage?) {
         editedView.setImage(image)
-        editedView.moveToCenterInSuperview()
         editedView.isHidden = false
         editedView.bounds.size = editedViewDefaultSize
         editedView.setBorder(width: editedViewDefaultBorderWidth, color: editedViewDefaultBorderColor)
+        editedView.moveToCenterInSuperview()
+        editedView.setDefaultTransform()
         
         activateEditPanel()
     }

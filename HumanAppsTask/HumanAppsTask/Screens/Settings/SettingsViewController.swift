@@ -9,12 +9,9 @@ import UIKit
 
 class SettingsViewController: FormTableViewController {
     
-    //MARK: - Public properties
     
     //MARK: - Private properties
     let viewModel: SettingsViewModel
-    
-    //MARK: - Views
     
     //MARK: - Life Cycle
     init(viewModel: SettingsViewModel) {
@@ -46,8 +43,6 @@ class SettingsViewController: FormTableViewController {
         setupView()
         setupNavigationBar()
     }
-    
-    //MARK: - Public methods
 }
 
 //MARK: - Private methods
