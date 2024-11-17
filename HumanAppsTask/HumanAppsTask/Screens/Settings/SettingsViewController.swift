@@ -12,11 +12,14 @@ class SettingsViewController: FormTableViewController {
     //MARK: - Public properties
     
     //MARK: - Private properties
+    let viewModel: SettingsViewModel
     
     //MARK: - Views
     
     //MARK: - Life Cycle
-    init() {
+    init(viewModel: SettingsViewModel) {
+        self.viewModel = viewModel
+        
         super.init()
         
         form = Form(sections: [
@@ -26,10 +29,11 @@ class SettingsViewController: FormTableViewController {
                 },
                 
                 SettingsRowItem(text: "Github profile", image: UIImage(systemName: "network")) { [weak self] in
-                    self?.goToGihubProfile()
+                    self?.viewModel.goToGihubProfile()
                 }
             ])
         ])
+        
         setupTabBarItem()
     }
     
@@ -70,14 +74,6 @@ private extension SettingsViewController {
         alertVC.addAction(UIAlertAction(title: "Cancel", style: .cancel))
         
         present(alertVC, animated: true)
-    }
-    
-    func goToGihubProfile() {
-        guard let url = URL(string: "https://github.com/Eg0rik") else {
-            return
-        }
-        
-        UIApplication.shared.open(url)
     }
 }
 
