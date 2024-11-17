@@ -11,7 +11,7 @@ enum FilterType : String, CaseIterable {
     case mono = "CIPhotoEffectMono"
     case transfer =  "CIPhotoEffectTransfer"
     
-    var name: String {
+    var nameForUser: String {
         switch self {
             case .original: "Orig"
             case .instant: "Instant"

@@ -36,7 +36,7 @@ class HomeViewController: UIViewController {
         var actions = [UIAction]()
         
         for filter in FilterType.allCases {
-            actions.append(UIAction(title: filter.name) { [weak self] _ in
+            actions.append(UIAction(title: filter.nameForUser) { [weak self] _ in
                 self?.editedView.setFilter(filter)
             })
         }
