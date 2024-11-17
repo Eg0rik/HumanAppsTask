@@ -59,7 +59,7 @@ class HomeViewController: UIViewController {
     
     private lazy var borderWidthSlider: UISlider = {
         let slider = UISlider()
-        slider.value = 16
+        slider.value = Float(editedViewDefaultBorderWidth)
         slider.minimumValue = 0
         slider.maximumValue = 20
         slider.thumbTintColor = editedViewDefaultBorderColor
@@ -127,7 +127,12 @@ private extension HomeViewController {
     
     func deactivateEditPanel() {
         segmentedControlImageFilter.isEnabled = false
+        segmentedControlImageFilter.selectedSegmentIndex = 0
+        
         borderWidthSlider.isEnabled = false
+        borderWidthSlider.value = Float(editedViewDefaultBorderWidth)
+        borderWidthSlider.thumbTintColor = editedViewDefaultBorderColor
+        
         setPlussBarButton()
     }
     
